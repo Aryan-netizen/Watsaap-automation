@@ -3,25 +3,42 @@ const qrcode = require('qrcode-terminal');
 const cron = require('node-cron');
 
 const client = new Client({
-  authStrategy: new LocalAuth()
+    authStrategy: new LocalAuth()
 });
 
 client.on('qr', (qr) => {
-  qrcode.generate(qr, { small: true });
+    qrcode.generate(qr, { small: true });
 });
 
 client.on('ready', () => {
-  console.log("Bot is ready!");
+    console.log('Bot is ready');
 });
 
 client.initialize();
 
-// 7 AM message
-cron.schedule('0 7 * * *', () => {
-  client.sendMessage('91XXXXXXXXXX@c.us', 'Good morning Mom ❤️');
+const number = "919872958327@c.us";
+
+// 2:00 PM
+cron.schedule('0 14 * * *', () => {
+    client.sendMessage(number, "Going to eat");
 });
 
-// 10 PM message
-cron.schedule('0 22 * * *', () => {
-  client.sendMessage('91XXXXXXXXXX@c.us', 'Good night Dad ❤️');
+// 3:30 PM
+cron.schedule('30 15 * * *', () => {
+    client.sendMessage(number, "Going to college");
+});
+
+// 4:10 PM
+cron.schedule('10 16 * * *', () => {
+    client.sendMessage(number, "At college");
+});
+
+// 9:10 PM
+cron.schedule('10 21 * * *', () => {
+    client.sendMessage(number, "Chitkara se ja rha hun");
+});
+
+// 9:30 PM
+cron.schedule('30 21 * * *', () => {
+    client.sendMessage(number, "At PG");
 });
