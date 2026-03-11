@@ -5,7 +5,13 @@ const cron = require('node-cron');
 const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
+        headless: true,
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage'
+        ],
+        executablePath: process.env.CHROME_BIN || undefined
     }
 });
 
