@@ -2,6 +2,13 @@ const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 const cron = require('node-cron');
 
+let executablePath;
+if (process.env.CHROME_BIN) {
+    executablePath = process.env.CHROME_BIN;
+} else if (process.platform === 'linux') {
+    executablePath = '/opt/render/.cache/puppeteer/chrome-linux/chrome';
+}
+
 const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
@@ -9,9 +16,11 @@ const client = new Client({
         args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
-            '--disable-dev-shm-usage'
+            '--disable-dev-shm-usage',
+            '--disable-gpu'
         ],
-        executablePath: process.env.CHROME_BIN || undefined
+        executablePath: executablePath,
+        defaultViewport: null
     }
 });
 

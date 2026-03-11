@@ -5,17 +5,20 @@
   "scripts": {
     "start": "node bot.js",
     "postinstall": "npm run install-browser",
-    "install-browser": "npx puppeteer@latest browsers install chrome"
+    "install-browser": "npx puppeteer browsers install chrome || true"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "description": "",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "dependencies": {
     "whatsapp-web.js": "^1.23.0",
     "qrcode-terminal": "^0.12.0",
     "node-cron": "^3.0.3",
-    "puppeteer": "latest"
+    "puppeteer": "^21.0.0"
   }
 }
